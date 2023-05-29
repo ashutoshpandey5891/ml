@@ -15,6 +15,9 @@ def plot_numerical_features(train_data,num_cols,target_col=None):
     #     sns.histplot(data=train_data,x=col,hue=target_col,ax=axes[i][0])
     #     sns.boxplot(data = train_data,x=target_col,y=col,ax=axes[i][1])
         sns.histplot(data=train_data,x=col,ax=axes[i][0])
+        axes[i][0].axvline(train_data[col].mean(),color='magenta', linestyle='dashed', linewidth=2,label='mean')
+        axes[i][0].axvline(train_data[col].median(),color='cyan', linestyle='dashed', linewidth=2,label='median')
+        axes[i][0].legend()
         sns.boxplot(data = train_data,y=col,ax=axes[i][1])
         sns.scatterplot(data = train_data,x=col,y=target_col,ax=axes[i][2])
 
