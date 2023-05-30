@@ -47,3 +47,6 @@ def plot_confusion_matrix(y_test,preds,labels):
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
 
+
+
+
