@@ -21,6 +21,32 @@ def plot_numerical_features(train_data,num_cols,target_col=None):
         sns.boxplot(data = train_data,y=col,ax=axes[i][1])
         sns.scatterplot(data = train_data,x=col,y=target_col,ax=axes[i][2])
 
+
+
+
+### Categorical plotting
+
+categorical_features = ['Sex']
+
+n = len(categorical_features)
+fig,axes = plt.subplots(n,2,figsize=(22,n*4))
+
+for i in range(n):
+    col = categorical_features[i]
+    counts = train_df[col].value_counts().sort_index()
+    counts.plot.bar(ax = axes[0], color='steelblue')
+    axes[0].set_title(col + ' counts')
+    axes[0].set_xlabel(col) 
+    axes[0].set_ylabel("Frequency")
+    
+    ## boxplot of target col by col
+    train_df.boxplot(column = target_col, by = col, ax = axes[1])
+    axes[1].set_title('Target by ' + col)
+    axes[1].set_ylabel(target_col)
+    
+    
+plt.show()
+
 def plot_heatmap(train_data,num_cols):
     corr = train_data[num_cols].corr()
     fig = plt.figure(figsize=(16,8))
